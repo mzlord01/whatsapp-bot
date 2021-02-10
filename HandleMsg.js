@@ -1564,22 +1564,22 @@ case 'peluk': //thanks to SASHA BOT
     break;
 
 case 'pollresult':
-    if (!isRegistered) return piyo.reply(from , `Maaf ${pushname}, sepertinya kamu belum terdaftar sebagai user Piyobot, untuk pendaftaran bisa menggunakan /register nama | Jenis Kelamin. Contoh: /register ${pushname}|cewe`, id)
+    if (!isRegistered) return piyo.reply(from , `Maaf ${pushname}, sepertinya kamu belum terdaftar sebagai user Piyobot, untuk pendaftaran bisa menggunakan ${prefix}register nama | Jenis Kelamin. Contoh: /register ${pushname}|cewe`, id)
     feature.getpoll(piyo, message, pollfile, voterslistfile)
     break
 
 case 'vote':
-    if (!isRegistered) return piyo.reply(from, `Maaf ${pushname}, sepertinya kamu belum terdaftar sebagai user Piyobot, untuk pendaftaran bisa menggunakan /register nama | Jenis Kelamin. Contoh: /register ${pushname}|cewe`, id)
+    if (!isRegistered) return piyo.reply(from, `Maaf ${pushname}, sepertinya kamu belum terdaftar sebagai user Piyobot, untuk pendaftaran bisa menggunakan /${prefix}register nama | Jenis Kelamin. Contoh: /register ${pushname}|cewe`, id)
     feature.voteadapter(piyo, message, pollfile, voterslistfile)
     break
 
 case 'addpoll':
-    if (!isRegistered) return piyo.reply(from, `Maaf ${pushname}, sepertinya kamu belum terdaftar sebagai user Piyobot, untuk pendaftaran bisa menggunakan /register nama | Jenis Kelamin. Contoh: /register ${pushname}|cewe`, id)
+    if (!isRegistered) return piyo.reply(from, `Maaf ${pushname}, sepertinya kamu belum terdaftar sebagai user Piyobot, untuk pendaftaran bisa menggunakan /${prefix}register nama | Jenis Kelamin. Contoh: /register ${pushname}|cewe`, id)
     feature.adminpollreset(piyo, message, message.body.slice(9), pollfile, voterslistfile)
     break
 
 case 'addv':
-    if (!isRegistered) return piyo.reply(from, `Maaf ${pushname}, sepertinya kamu belum terdaftar sebagai user Piyobot, untuk pendaftaran bisa menggunakan /register nama | Jenis Kelamin. Contoh: /register ${pushname}|cewe`, id)
+    if (!isRegistered) return piyo.reply(from, `Maaf ${pushname}, sepertinya kamu belum terdaftar sebagai user Piyobot, untuk pendaftaran bisa menggunakan /${prefix}register nama | Jenis Kelamin. Contoh: /register ${pushname}|cewe`, id)
     feature.addcandidate(piyo, message, message.body.slice(6), pollfile, voterslistfile)
     break
 
@@ -1814,11 +1814,11 @@ case 'next':
                      .then(() => piyo.sendText(from, 'Partner found :🙉\n/next — find a new partner'))
                     break
 case 'send':
-                     if (!isRegistered) return piyo.reply(from, `Maaf ${pushname}, sepertinya kamu belum terdaftar sebagai user Piyobot, untuk pendaftaran bisa menggunakan */register* nama | no hp.    Contoh: /register |${pushname}|cewe/cowo`, id)
+                     if (!isRegistered) return piyo.reply(from, `Maaf ${pushname}, sepertinya kamu belum terdaftar sebagai user Piyobot, untuk pendaftaran bisa menggunakan *${prefix}register* nama | no hp.    Contoh: /register |${pushname}|cewe/cowo`, id)
                      if (isGroupMsg) return piyo.reply(from, 'Perintah ini hanya bisa dilakukan di chat personal!', id)
                      var cek = pengirimm.includes(sender.id);
                      if (!cek) {
-                         return piyo.reply(from, 'kamu belum terdaftar, untuk mendaftar kirim /register no wa kamu\ncontoh : /register namakamu | cewe / cowo ', id) //if user is not registered
+                         return piyo.reply(from, 'kamu belum terdaftar, untuk mendaftar kirim ${prefix}register no wa kamu\ncontoh : ${prefix}register namakamu | cewe / cowo ', id) //if user is not registered
                      } else {
                          if (isMedia && arghh.length >= 1) {
                              const mediaData = await decryptMedia(message, uaOverride)
