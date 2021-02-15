@@ -22,7 +22,7 @@ const path = require('path')
 const bent = require('bent')
 const Math_js = require('mathjs')
 const fs = require('fs-extra')
-const errorImg = 'https://i.imgur.com/528Q1YD.png'
+const errorImg = 'https://i.imgur.com/VKoNMIR.png'
 db.defaults({ group: []}).write()
 var tanggal  = moment.tz('Asia/Jakarta').format('YYYY-MM-DD')
 
@@ -120,6 +120,7 @@ let {
     limitCount, 
     memberLimit,
     prefix,
+    apikeyx,
     apikeyz,
     vhtearkey
 } = setting
@@ -128,7 +129,7 @@ let {
 ///////////////////////////////API JSON///////////////////////////////////////
 const {
     apiNoBg,
-	apiSimi,
+    apiSimi
 } = JSON.parse(fs.readFileSync('./settings/api.json'))
 
 //////////////////////////////////////FUNCTION BALANCE/////////////////////////////////////
@@ -213,7 +214,7 @@ function formatin(duit){
 const inArray = (needle, haystack) => {
     let length = haystack.length;
     for(let i = 0; i < length; i++) {
-        if(haystack[i].id == needle) return i;
+    if(haystack[i].id == needle) return i;
     }
     return false;
 }
@@ -234,7 +235,7 @@ module.exports = HandleMsg = async (piyo, message) => {
         const isGroupAdmins = groupAdmins.includes(sender.id) || false
         const chats = (type === 'chat') ? body : (type === 'image' || type === 'video') ? caption : ''
         const pengirim = sender.id
-		const pengirimm = JSON.parse(fs.readFileSync('./settings/registered.json'))
+        const pengirimm = JSON.parse(fs.readFileSync('./settings/registered.json'))
         const uwong = pengirimm[Math.floor(Math.random() * pengirimm.length)];
         const serial = sender.id
         const time = moment(t * 1000).format('DD/MM/YY HH:mm:ss')
@@ -607,6 +608,37 @@ if (isGroupMsg && AntiStickerSpam && !isGroupAdmins && !isAdmin && !isOwner){
         addStickerCount(serial)
     }
 }
+	    
+///////////////////////////////////////////////////////////BASS////////////////////////////////////
+function stream2Buffer(cb = noop) {
+    return new Promise(resolve => {
+        let write = new Writable()
+        write.data = []
+        write.write = function (chunk) {
+            this.data.push(chunk)
+        }
+        write.on('finish', function () {
+            resolve(Buffer.concat(this.data))
+        })
+
+        cb(write)
+    })
+}
+
+/**
+ * Convert Buffer to Readable Stream
+ * @param {Buffer} buffer
+ * @returns {ReadableStream}
+ */
+function buffer2Stream(buffer) {
+    return new Readable({
+        read() {
+            this.push(buffer)
+            this.push(null)
+        }
+    })
+}
+
 //////////////
 if (!isGroupMsg && isMedia && isImage && !isCmd)
     {
@@ -665,6 +697,9 @@ if (!isGroupMsg && isMedia && isImage && !isCmd)
                         fs.writeFileSync('./settings/limit.json',JSON.stringify(limit));
                     }
                 }
+	    function baseURI(buffer = Buffer.from([]), metatype = 'text/plain') {
+                return `data:${metatype};base64,${buffer.toString('base64')}`
+            }
 	 // PREMIUM
 	    premium.expiredCheck(_premium)
 	    
@@ -1992,6 +2027,16 @@ if (!isBotGroupAdmins) return piyo.reply(from, 'Gagal, silahkan tambahkan bot se
     piyo.reply(from, 'Success kick all member', id)
 break
 //////////////////////////////////////////////MENU IMAGE/////////////////////////////////////////////////////////
+case 'fisheye':
+            if (isMedia && type === 'image' || isQuotedImage) {
+                await piyo.reply(from, ind.wait(), id)
+                const encryptMedia = isQuotedImage ? quotedMsg : message
+                const mediaData = await decryptMedia(encryptMedia, uaOverride)
+                const imageLinkk = await uploadImages(mediaData, `fisheye.${sender.id}`)
+                const eye = await axios.get(`https://naufalhoster.xyz/tools/fisheye?apikey=${apikeyx}&url=${imageLinkk}`)
+                await piyo.sendFileFromUrl(from, eye.data.result.image , 'fish.jpg' , '' , id)
+            }
+            break
 case 'neko18':
                         const nsfwneko = await axios.get('https://tobz-api.herokuapp.com/api/nsfwneko?apikey=BotWeA')
                         const nsfwn = nsfwneko.data
@@ -2902,8 +2947,8 @@ case 'infomobil':
 case 'nickepep':
             if (!q) return piyo.reply(from, `Ketik /nickepep id ff nya ` ,  id)
             await piyo.reply(from, ind.wait() , id)
-            const nick = await axios.get(`http://hujanapi.xyz/api/nickff?id=${q}&apikey=${apikeyz}`)
-            await piyo.reply(from, nick.data.result , id)
+            const nick1 = await axios.get(`http://hujanapi.xyz/api/nickff?id=${q}&apikey=${apikeyz}`)
+            await piyo.reply(from, nick1.data.result , id)
             break
 
 case 'nickml':
@@ -3412,6 +3457,26 @@ case 'playstore':
             if (!kurirs.includes(args[0])) return piyo.sendText(from, `Maaf, jenis ekspedisi pengiriman tidak didukung layanan ini hanya mendukung ekspedisi pengiriman ${kurirs.join(', ')} Tolong periksa kembali.`)
             console.log('Memeriksa No Resi', args[1], 'dengan ekspedisi', args[0])
             cekResi(args[0], args[1]).then((result) => piyo.sendText(from, result))
+            break
+	case 'bass':
+            if (isQuotedAudio) {
+                let dB = 58
+                let freq = 75
+                console.log(color('[WAPI]', 'green'), 'Downloading and decrypt media...')
+                const mediaData = await decryptMedia(quotedMsg)
+                const bass = await stream2Buffer(write => {
+                    ffmpeg(buffer2Stream(mediaData))
+                        .audioFilter('equalizer=f=' + freq + ':width_type=o:width=2:g=' + dB)
+                        .format('mp3')
+                        .on('start', commandLine => console.log(color('[FFmpeg]'), commandLine))
+                        .on('progress', progress => console.log(color('[FFmpeg]'), progress))
+                        .on('end', () => console.log(color('[FFmpeg]'), 'Processing finished!'))
+                        .stream(write)
+                })
+                piyo.sendPtt(from, baseURI(bass, 'audio/mp3'), id)
+            } else {
+                piyo.reply(from, `Hanya tag data audio!`, id)
+            }
             break
         case 'tts':               
             if (args.length == 0) return piyo.reply(from, `Mengubah teks menjadi sound (google voice)\nketik: ${prefix}tts <kode_bahasa> <teks>\ncontoh : ${prefix}tts id halo\nuntuk kode bahasa cek disini : https://anotepad.com/note/read/5xqahdy8`)
