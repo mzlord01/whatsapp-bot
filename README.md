@@ -7,40 +7,12 @@
 > BACA README GOBLOK BIAR LU TAU BELI APIKEYNYA DIMANA
 >
 
-<h3 align="center">Made with ❤️ by</h3>
-<p align="center">
-  <a href="https://github.com/SlavyanDesu"><img src="https://avatars3.githubusercontent.com/u/28254882?s=400&u=25765902db0b709938966cf4127ac11af5eafb5d&v=4" height="128" width="128" /></a>
-  <a href="https://github.com/AlvioAdjiJanuar"><img src="https://avatars2.githubusercontent.com/u/68207798?s=400&u=29439908cd661d11443391cb74f5b07267b71117&v=4" height="128" width="128" /></a>
-  <a href="https://github.com/VideFrelan"><img src="https://avatars1.githubusercontent.com/u/76523793?s=400&u=365f732cd3fc09ce75f6556715a00386005db57c&v=4" height="128" width="128" /></a>
-</p>
+<img src="https://raw.githubusercontent.com/AlvioAdjiJanuar/lord/master/videoplayback-2-online-video-cut.gif">
 
 <p align="center">
   <a href="https://github.com/AlvioAdjiJanuar"><img title="Author" src="https://img.shields.io/badge/Author-AlvioAdjiJanuar-darkred.svg?style=for-the-badge&logo=github" /></a>
 </p>
 
-<p align="center">
-  <a href="https://github.com/IndonesianDev/whatsapp-bot"><img title="Stars" src="https://img.shields.io/github/stars/IndonesianDev/whatsapp-bot?color=black&style=flat-square" /></a>
-  <a href="https://github.com/IndonesianDev/whatsapp-bot/network/members"><img title="Forks" src="https://img.shields.io/github/forks/IndonesianDev/whatsapp-bot??color=pink&style=flat-square" /></a>
-  <a href="https://github.com/IndonesianDev/whatsapp-bot/watchers"><img title="Watching" src="https://img.shields.io/github/watchers/IndonesianDev/whatsapp-bot??label=watchers&color=blue&style=flat-square" /></a> <br>
-  <a href="https://www.npmjs.com/package/@open-wa/wa-automate"><img src="https://img.shields.io/npm/v/@open-wa/wa-automate.svg?color=green" /></a>
-  <img src="https://img.shields.io/node/v/@open-wa/wa-automate" />
-  <img src="https://img.shields.io/github/repo-size/IndonesianDev/whatsapp-bot" /> <br>
-<a href="https://app.fossa.com/projects/git%2Bgithub.com%2FIndonesianDev%2Fwhatsapp-bot?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FIndonesianDev%2Fwhatsapp-bot.svg?type=shield"/></a>
-  <a href="https://www.codefactor.io/repository/github/indonesiandev/whatsapp-bot"><img src="https://www.codefactor.io/repository/github/indonesiandev/whatsapp-bot/badge" alt="CodeFactor" /></a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/IndonesianDev/whatsapp-bot#Requirements">Persyaratan</a> •
-  <a href="https://github.com/IndonesianDev/whatsapp-bot#installation">Cara Penginstalan</a> •
-  <a href="https://github.com/IndonesianDev/whatsapp-bot#features">Fiturnya</a> •
-  <a href="https://github.com/IndonesianDev/whatsapp-bot#thanks-to">Terimakasih Kepada</a> •
-  <a href="https://github.com/IndonesianDev/whatsapp-bott#license">lisensi</a>
-</p>
-
-<h4 align="center">
-  <a href="https://chat.whatsapp.com/KSG5C4SGlT2IpRtFm05owk">Join WA BOT DEV Indonesia!</a>
-</h4>
-</div>
 
 # Requirements
 * [Node.js](https://nodejs.org/en/)
@@ -67,6 +39,8 @@ Edit value yang diperlukan di `settings/setting.json`.
     "medialimitCount": "5",
     "prefix": "/",
     "vhtearkey": "Your Apikey In Here",
+    "apikeyz": "Your Apikey In Here",
+    "apikeyx": "Your Apikey In Here",
     "itech": "Your Apikey In Here"
 }
 
@@ -74,9 +48,12 @@ Edit value yang diperlukan di `settings/setting.json`.
 
 `ownerBot`: your WhatsApp number.  
 `prefix`: bot's prefix.  
-`itech`: API token. Anda bisa mendapatkannya [di sini] (https://api.i-tech.id) dengan membuat akun. Setelah itu, setel IP statis server / host Anda di [sini] (https://api.i-tech.id/settings/profile). 
+`itech`: API token. Anda bisa mendapatkannya https://api.i-tech.id dengan membuat akun. Setelah itu, setel IP statis server / host Anda di https://api.i-tech.id/settings/profile. 
 
-`vhtearkey`: VHTear API token. Anda bisa mendapatkannya [di sini] (https://api.vhtear.com/) dengan membeli kunci API miliknya.
+`vhtearkey`: VHTear API token. Anda bisa mendapatkannya https://api.vhtear.com/ dengan membeli kunci API.
+`apikeyz`: Hujan Api token. Anda Bisa Mendapatkannya https://hujanapi.xyz
+
+`apikeyx`: Naufal Hoster token. Anda Bisa Mendapatkannya https://naufalhoster.xyz
 
 ## 🔍 Menginstal dependensi
 ```bash
@@ -157,6 +134,9 @@ Setelah itu pindai kode QR menggunakan WhatsApp Anda di ponsel Anda!
 | Reminder            |      ✔️      |
 | Image to URL        |      ✔️      |
 | Jadwal sholat       |      ✔️      |
+| To Mp3              |      ✔️      |
+| Bass                |      ✔️      |
+| FishEye             |      ✔️      |
 | Line sticker latest |      ✔️      |
 | Cek ongkir          |      ✔️      |
 
@@ -223,16 +203,19 @@ Setelah itu pindai kode QR menggunakan WhatsApp Anda di ponsel Anda!
 | Auto-sticker     |      ✔️      |
 | Mute group       |      ✔️      |
 
-|        NSFW        | Availability |
+|        18+         | Availability |
 | :----------------: | :----------: |
 | Fetish             |      ✔️      |
 | Waifu NSFW         |      ✔️      |
 | Waifu 18+          |      ✔️      |
+| Xvideos            |      ✔️      |
+| Xvidl              |      ✔️      |
+| Xnxx               |      ✔️      |
+| Xnxxdl             |      ✔️      |
 | nHentai downloader |      ✔️      |
 
 
 # Thanks to
 * [`open-wa/wa-automate-nodejs`](https://github.com/open-wa/wa-automate-nodejs)
 * [`AlvioAdjiJanuar`](https://github.com/AlvioAdjiJanuar)
-* [`SlavyanDesu`](https://github.com/SlavyanDesu/BocchiBot)
-* [`VideFrelan`](https://github.com/VideFrelan)
+* [`dxxoo`](https://github.com/dxxoo)
