@@ -189,7 +189,7 @@ const {
             }
         }
 
-            if (isReg ) {
+            if (isRegistered) {
             const checkATM = checkATMuser(serial)
             try {
                 if (checkATM === undefined) addATM(serial)
